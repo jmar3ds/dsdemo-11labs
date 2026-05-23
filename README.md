@@ -79,4 +79,4 @@ The public case-study page embeds an ElevenAgents widget. This repo does not rec
 
 ## Contact
 
-- LinkedIn: linkedin.com/in/joaomarcosds
+- LinkedIn: [linkedin.com/in/joaomarcosds](https://www.linkedin.com/in/joaomarcosds)
