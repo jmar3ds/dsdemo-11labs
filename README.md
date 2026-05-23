@@ -11,7 +11,7 @@ The customer scenario is built from public information and treated as a working 
 ## 3-minute reviewer path
 
 1. Access the website https://joaomarcos-dsworksample-11labs.click/ to view the case-study page.
-2. Listen to `samples/sample_01.mp3`, `samples/sample_02.mp3`, and `samples/sample_03.mp3` if you do not want to grant mic access to the live widget.
+2. Listen to `../samples/greeting.mp3`, `../samples/delivery-eta.mp3`, and `../samples/human-handoff.mp3` if you do not want to grant mic access to the live widget.
 3. Skim `docs/deployment_playbook.md`, especially sections 1, 7, 11, and 12.
 4. Run `python -m pytest tests/ -q` to verify the local orchestration tests.
 
