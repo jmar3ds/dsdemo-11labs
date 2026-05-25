@@ -1,0 +1,39 @@
+{
+  "_meta": {
+    "description": "Mock Magalu order corpus served by the local FastAPI backend in the local ElevenAgents prototype. Brazilian customer names. Statuses: processing, out_for_delivery, delivered, delayed.",
+    "language": "pt-BR",
+    "last_reviewed": "2026-05-19"
+  },
+  "orders": {
+    "54321": {
+      "order_id": "54321",
+      "status": "out_for_delivery",
+      "customer_name": "Ana Souza",
+      "total_brl": 287.9
+    },
+    "37429": {
+      "order_id": "37429",
+      "status": "processing",
+      "customer_name": "Bruno Carvalho",
+      "total_brl": 1499.0
+    },
+    "61204": {
+      "order_id": "61204",
+      "status": "delivered",
+      "customer_name": "Patricia Lima",
+      "total_brl": 89.5
+    },
+    "48810": {
+      "order_id": "48810",
+      "status": "delayed",
+      "customer_name": "Rodrigo Mendes",
+      "total_brl": 2349.99
+    },
+    "70156": {
+      "order_id": "70156",
+      "status": "out_for_delivery",
+      "customer_name": "Camila Ribeiro",
+      "total_brl": 459.0
+    }
+  }
+}

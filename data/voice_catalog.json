@@ -1,0 +1,39 @@
+{
+  "_meta": {
+    "description": "Voice catalog for the Magalu PT-BR pilot (Fale com a Lu da Magalu). Three deliberately distinct premade voice profiles, chosen for distinct moments in the customer journey. In production, these must be re-evaluated against licensed Brazilian voice talent and a Professional Voice Clone (PVC) before any Lu-branded launch.",
+    "model_recommendation": "eleven_multilingual_v2",
+    "model_alternative_low_latency": "eleven_flash_v2_5",
+    "verified_against_sdk": "elevenlabs-python >= 1.0.0",
+    "last_reviewed": "2026-05-23",
+    "notes": "Cleaned for reviewer consistency: Luiza uses the Rachel premade voice as the Phase 1 bridge voice; production Lu requires licensed talent and PVC. Marina uses Matilda; Rafael uses Adam."
+  },
+  "voices": [
+    {
+      "name": "warm_female_br",
+      "display_name": "Luiza",
+      "voice_id": "kl3NazSWu2iDq9hViKaf",
+      "voice_id_source_voice": "Rachel (ElevenLabs premade, current library 2026-05). Selected after auditioning alternatives because Rachel gives the Luiza bridge voice a warmer, slightly more playful PT-BR register for support and notification flows.",
+      "description": "Warm, conversational female voice. Use for greetings, balance confirmations, anything where the customer needs to feel met by a person, not processed by a system.",
+      "rationale": "Brazilian retail customer service has a strong cultural expectation of warmth and tratamento humanizado. Rachel on eleven_multilingual_v2 gives the Phase 1 prototype a soft, conversational bridge voice that can test WhatsApp voice-notification behavior without implying that a premade voice is the production Lu. Luiza is a prototype voice; the production Lu voice should be a Phase 2 Professional Voice Clone (PVC) of approved Brazilian voice talent, subject to licensing and brand approval.",
+      "tradeoffs": "Not ideal for high-friction moments such as denials, fraud holds, or delivery exceptions where a calmer escalation pattern may work better. Also slightly slower than a power user wants for repeat status checks; keep utterances short and let users interrupt."
+    },
+    {
+      "name": "neutral_male_br",
+      "display_name": "Rafael",
+      "voice_id": "pNInz6obpgDQGcFmaJgB",
+      "voice_id_source_voice": "Adam (ElevenLabs premade)",
+      "description": "Neutral, efficient male voice. Use for transactional confirmations, high-stakes delivery exceptions, return-process readbacks, refund-denial communication: moments where clarity beats warmth.",
+      "rationale": "When a Magalu customer is anxious (order issue, delivery exception, return processing under CDC scrutiny), they want competence signaled fast. A grounded mid-register male voice reads as institutional credibility in BR retail, the audio equivalent of the store manager who looks you in the eye. Adam's stability score in eleven_multilingual_v2 is high, which matters for read-back of order numbers, prices, and tracking codes where TTS artifacts erode trust. Used surgically in the demo surface to illustrate persona-switching for high-stakes retail moments; never the production Lu voice (using Rafael as Lu's primary would break the brand entirely). Note: Rafael is NOT used in the Magalu Phase 1 deployment, which is Luiza-only for outbound notifications. Reserved as a cross-vertical reference and for the optional comparison surface only.",
+      "tradeoffs": "Reads as cold for soft moments (welcome, thanks, closing). Should never be used as the agent's default voice: it would make Magalu feel like a 1990s call center. Use surgically."
+    },
+    {
+      "name": "energetic_female_br",
+      "display_name": "Marina",
+      "voice_id": "XrExE9yKIg1WjnnlVkGX",
+      "voice_id_source_voice": "Matilda (ElevenLabs premade)",
+      "description": "Bright, energetic female voice. Use for proactive notifications, marketing-adjacent confirmations (cashback earned, goal reached), onboarding moments.",
+      "rationale": "Brazilian retail loves positive emotional reinforcement: \"seu pedido foi enviado,\" \"você ganhou um cupom,\" \"sua entrega chegou.\" Matilda's warm upper-mid register with a naturally upbeat intonation in eleven_multilingual_v2 reads as celebratory without sounding like a stadium announcer. She replaces Bella (deprecated from the ElevenLabs premade library, 2026-05); Lily was too calm and Alice too newsreader-formal for the celebratory beats this voice owns. Reserved for positive-affect moments outside the support flow (order shipped, Magalu Ouro reward earned, Magalu Pay savings milestone). Pre-selected as the celebration-cell voice in Phase 2 A/B testing; out of scope for Phase 1.",
+      "tradeoffs": "Inappropriate for service recovery, fraud, or any moment where the customer is stressed : the energy will feel tone-deaf. Also can sound performative on long passages; keep utterances under ~15 seconds when using this voice. Not suitable as the agent's escalation voice. Because Matilda is an American-English premade, on PT-BR the multilingual model occasionally leaks a faint English vowel color on stressed syllables : re-roll if it becomes audible on a given take."
+    }
+  ]
+}

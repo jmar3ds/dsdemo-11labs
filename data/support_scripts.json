@@ -1,0 +1,75 @@
+{
+  "_meta": {
+    "description": "Realistic Magalu PT-BR retail support exchanges, written for the 'Fale com a Lu da Magalu' deployment-strategy prototype. Lines are written as a Brazilian customer service agent would naturally speak, not translated from English. Forms of address use 'você' (default BR register), informal but respectful. Specific care has been taken to use authentic BR retail vocabulary (pedido, entrega, troca, cupom, frete) and natural conversational fillers ('então', 'tudo bem', 'só um instante'). The agent persona in Phase 1 is Luiza (premade Rachel voice on eleven_multilingual_v2) as a prototype voice; Phase 2 of the playbook moves to a Professional Voice Clone of approved Brazilian voice talent.",
+    "language": "pt-BR",
+    "register": "informal-respectful (você, second person)",
+    "verified_against_sdk": "elevenlabs-python >= 1.0.0",
+    "last_reviewed": "2026-05-23"
+  },
+  "scripts": [
+    {
+      "id": "greeting_01",
+      "use_case": "greeting",
+      "language": "pt-BR",
+      "agent_line": "Oi, aqui é a Lu da Magalu. Tudo bem? Eu posso te ajudar com o status do seu pedido, com uma troca ou devolução, ou se preferir, te passo pra um atendente humano. Como posso ajudar hoje?",
+      "context": "Opening greeting. Warm, conversational, sets a low-stakes tone. Offers the three most common reasons for contact plus the human-handoff escape hatch up front, a deliberate trust-building move. Note: the prototype uses 'Lu' as the agent name to demonstrate brand-consistent dialogue; production-grade deployment requires the PVC and licensing alignment described in the playbook.",
+      "expected_voice": "warm_female_br"
+    },
+    {
+      "id": "order_status_01",
+      "use_case": "order_status",
+      "language": "pt-BR",
+      "agent_line": "Claro, só um instante enquanto eu consulto. Pronto: o seu pedido número três sete quatro dois nove já saiu do nosso centro de distribuição em Louveira e está com a transportadora. A previsão é de chegar na sua casa até quarta-feira. Quer que eu te avise quando sair pra entrega?",
+      "context": "Order status / 'cadê meu pedido' confirmation. Highest-volume intent for BR retail support. Note the spoken-out order number (TTS handles long digit strings inconsistently; reading them in groups of two or three is a deployment quality lever). Ends with an opt-in for proactive delivery-ETA notification, the Phase 1 voice-notification surface.",
+      "expected_voice": "warm_female_br"
+    },
+    {
+      "id": "delivery_eta_01",
+      "use_case": "delivery_eta_notification",
+      "language": "pt-BR",
+      "agent_line": "Oi, é a Lu da Magalu. Boa notícia: o seu pedido saiu pra entrega agora de manhã e deve chegar até o final da tarde de hoje. Se precisar reagendar ou tiver alguma dúvida, é só me chamar aqui no WhatsApp. Tenha um ótimo dia.",
+      "context": "Outbound voice notification on out-for-delivery event. Short (under 20 seconds), positive-affect, single clear next step. This is the test cell for the Phase 1 A/B against text-only delivery notifications. Designed to be reassuring without being intrusive; frequency-capped per customer per order.",
+      "expected_voice": "warm_female_br"
+    },
+    {
+      "id": "abandoned_cart_01",
+      "use_case": "abandoned_cart_recovery",
+      "language": "pt-BR",
+      "agent_line": "Oi, é a Lu. Notei que você deixou a Smart TV de cinquenta polegadas no carrinho. Ela ainda está disponível e com um cupom de cinco por cento de desconto que eu posso liberar pra você se finalizar até amanhã. Quer voltar pro carrinho? É só responder com 'sim' que eu te mando o link.",
+      "context": "Abandoned-cart recovery. The conversion-lift headline for Phase 1. Voice notification with Lu's warmth, specific product reference (read aloud, not just numbers), explicit time-bound incentive, single-tap reply path. A/B cell pair with the text-only baseline produces the CFO number for the Day 90 review.",
+      "expected_voice": "warm_female_br"
+    },
+    {
+      "id": "product_recommendation_01",
+      "use_case": "product_recommendation",
+      "language": "pt-BR",
+      "agent_line": "Boa pergunta. Olha, pra quem mora em apartamento e quer secar roupa rápido, a Brastemp de onze quilos é uma escolha mais silenciosa e cabe na área de serviço padrão. A Electrolux de dez quilos sai um pouco mais barata e tem boas avaliações também, mas é um pouquinho maior. Quer que eu te mostre as duas lado a lado pra você comparar?",
+      "context": "'Pergunta pra Lu' / product-comparison prototype. In Phase 1 this is a contained demo-surface prototype only, narrow to one vertical (small/large appliances). Production version of this feature ships in Phase 3 with full catalog grounding and review-aware recommendations. The line illustrates the conversational range: Lu volunteers attributes the customer did not ask about (silence, fit) because she has the context.",
+      "expected_voice": "warm_female_br"
+    },
+    {
+      "id": "returns_intake_01",
+      "use_case": "returns_and_exchanges",
+      "language": "pt-BR",
+      "agent_line": "Entendi, e fica tranquilo, troca dentro do prazo de sete dias é direito seu pelo Código de Defesa do Consumidor e a gente resolve sem complicação. Vou abrir o seu pedido de troca agora e te mandar o código de postagem dos Correios por aqui mesmo. Você só precisa levar o produto numa agência com a embalagem original. Tudo bem?",
+      "context": "Returns intake. Note the explicit CDC reference (signals competence and respects consumer law without making the customer feel they had to invoke it). Bot triages and opens the ticket; humans close on edge cases per the playbook ranking. The 'pode ser?' / 'tudo bem?' pattern at the close asks consent before acting, a useful PII-handling and trust-building pattern across all intents.",
+      "expected_voice": "warm_female_br"
+    },
+    {
+      "id": "escalation_01",
+      "use_case": "escalation_to_human",
+      "language": "pt-BR",
+      "agent_line": "Eu entendo, e você tem toda razão de querer falar com uma pessoa. Vou te transferir agora pra Camila, que é uma das nossas atendentes especializadas. Ela já vai estar com o histórico da nossa conversa, então você não precisa contar tudo de novo. Só um momentinho.",
+      "context": "Empathetic handoff. The crucial move: acknowledge the customer's preference WITHOUT defending the bot, name the human agent (research shows this reduces abandonment), and explicitly promise no context-repeat (one of the top BR customer pain points). The 'Camila' pattern is referenced in the playbook risk register as the named-human-on-handoff design.",
+      "expected_voice": "warm_female_br"
+    },
+    {
+      "id": "closing_01",
+      "use_case": "closing",
+      "language": "pt-BR",
+      "agent_line": "Foi um prazer te atender hoje. Se precisar de mais alguma coisa, é só me chamar aqui no WhatsApp, eu fico por aqui. Obrigada por escolher a Magalu e tenha um ótimo dia.",
+      "context": "Closing. Warm but not overlong. The 'obrigada por escolher a Magalu' phrasing is deliberate: loyalty is the currency of retail and naming the choice (lightly) reinforces the brand relationship without being saccharine.",
+      "expected_voice": "warm_female_br"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "_meta": {
+    "description": "Phase 1 intent map for the local ElevenAgents prototype. Keywords are PT-BR. Response templates and narration phrases are grounded in the Lu Style Reference (docs/lu_style_reference.md): informal contractions (tá/pra/tô), você over senhor/senhora, affective markers (viu/né/boa notícia), no corporate-bot register. Thresholds are tuned for the rule-based matched/total formula on a small keyword corpus; an ML upgrade in production would use calibrated probabilities and the 0.75 thresholds documented in agent_system_prompt.md.",
+    "language": "pt-BR",
+    "last_reviewed": "2026-05-23",
+    "grounded_in": "docs/lu_style_reference.md"
+  },
+  "order_status": {
+    "keywords": [
+      "pedido",
+      "encomenda",
+      "onde está",
+      "onde tá",
+      "rastreio",
+      "rastreamento",
+      "entrega",
+      "número"
+    ],
+    "confidence_threshold": 0.1,
+    "tool": "fetch_order",
+    "narration_required": true,
+    "narration_text": "Claro, deixa eu confirmar isso pra você agora.",
+    "response_template": "Boa notícia: o seu pedido tá em rota de entrega e deve chegar até o final da tarde de hoje. Quer que eu te avise quando o entregador estiver perto?"
+  },
+  "abandoned_cart_recovery": {
+    "keywords": [
+      "carrinho",
+      "esqueci",
+      "deixei",
+      "cupom",
+      "desconto",
+      "finalizar"
+    ],
+    "confidence_threshold": 0.1,
+    "tool": "fetch_cart",
+    "narration_required": true,
+    "narration_text": "Deixa eu dar uma olhada rápida no seu carrinho.",
+    "response_template": "Ainda tá tudo lá no seu carrinho e o cupom de cinco por cento continua valendo até amanhã. Quer que eu te mande o link pra você finalizar?"
+  },
+  "escalation_request": {
+    "keywords": [
+      "pessoa",
+      "atendente",
+      "humano",
+      "quero falar com alguém",
+      "transfere",
+      "atendimento"
+    ],
+    "confidence_threshold": 0.15,
+    "tool": null,
+    "narration_required": false,
+    "narration_text": null,
+    "response_template": "Eu entendo, e você tem toda razão de querer falar com uma pessoa. Vou te transferir agora pra Camila, que é uma das nossas atendentes especializadas. Ela já vai estar com o histórico da nossa conversa, então você não precisa contar tudo de novo. Só um momentinho."
+  }
+}
